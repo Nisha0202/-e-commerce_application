@@ -2,3 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.lexend{
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+.imprima{
+  font-family: "Imprima", sans-serif;
+}
+.inter{
+font-family: "Inter", sans-serif;
+}
+.playful{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+}
+.container{
+  max-width: 1150px;
+  min-width: 300px;
+  padding: 0px;
+  margin: 0px auto;
+  min-height: 70svh;
+  /* background-color: #f5f5f5; */
+}
+.link-active {
+  font-weight: bold;
+  color: grey;
+  border-radius: 6px;
+}

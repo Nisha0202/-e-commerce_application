@@ -1,15 +1,17 @@
-import { useState } from 'react'
-
+import React from 'react';
+import ProductList from './components/ProductList';
+import CartSummary from './components/CartSummary';
 import './App.css'
 
-function App() {
-  
-
+const App: React.FC = () => {
   return (
-    <>
-    hi
-    </>
-  )
-}
+    <div className="App playful container">
+      <CartSummary />
+      <ProductList />
+    </div>
+  );
+};
 
-export default App
+export default App;
+
+
