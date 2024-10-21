@@ -57,7 +57,6 @@ The directory structure of the application is organized as follows:
   ├── App.tsx
   └── main.tsx
 
-  - main.tsx
 
 ## Key Architectural Choices
 

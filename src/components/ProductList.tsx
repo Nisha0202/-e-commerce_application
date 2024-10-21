@@ -16,18 +16,19 @@ const ProductList: React.FC = () => {
   const dispatch = useDispatch();
   const [showDialog, setShowDialog] = useState(false)
   const [itemsToShow, setItemsToShow] = useState(8); // Number of items to show at first
- 
+
   const filteredProducts = products.filter((product: Product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   useEffect(() => {
     const productsToDisplay = searchTerm
       ? filteredProducts.slice(0, itemsToShow) // Show filtered products if searching
       : products.slice(0, itemsToShow); // Otherwise, show general products
-  
+
     setVisibleProducts(productsToDisplay);
-  }, [filteredProducts, products, itemsToShow, searchTerm]);
-  
+  }, [products, itemsToShow, searchTerm]);
+
 
   // Scroll logic
   const handleScroll = () => {
@@ -38,12 +39,12 @@ const ProductList: React.FC = () => {
       }
     }
   };
-  
+
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [itemsToShow, products]);
+  }, [itemsToShow]);
 
 
   const handleAddToCart = (product: Product) => {
