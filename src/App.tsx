@@ -5,7 +5,7 @@ import './App.css'
 
 const App: React.FC = () => {
   return (
-    <div className="App playful container">
+    <div className="App lexend container">
       <CartSummary />
       <ProductList />
     </div>

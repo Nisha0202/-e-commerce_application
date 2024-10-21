@@ -1,8 +1,9 @@
+// src/app/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { productApi } from '../services/productApi'; // RTK Query API
-import cartReducer from '../features/cart/cartSlice'; // Import the cart reducer
+import cartReducer from '../features/cart/cartSlice'; //cart reducer
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist/es/constants';
 
 const persistConfig = {
@@ -14,15 +15,15 @@ const persistedCartReducer = persistReducer(persistConfig, cartReducer); // Pers
 
 const store = configureStore({
   reducer: {
-    cart: persistedCartReducer, // Add the cart slice reducer here
-    [productApi.reducerPath]: productApi.reducer, // Add the productApi reducer
+    cart: persistedCartReducer, //cart slice reducer 
+    [productApi.reducerPath]: productApi.reducer, //productApi reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(productApi.middleware), // Add RTK Query middleware
+    }).concat(productApi.middleware), //RTK Query middleware
 });
 
 export const persistor = persistStore(store);

@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useGetProductsQuery } from '../services/productApi';
 import { addToCart } from '../features/cart/cartSlice';
+import { LuSearch } from 'react-icons/lu';
+import { RxCross2 } from 'react-icons/rx';
+import { PiShoppingCartBold } from 'react-icons/pi';
+import { LiaShoppingCartSolid } from 'react-icons/lia';
 
 // Define the product type
 interface Product {
@@ -35,62 +39,66 @@ const ProductList: React.FC = () => {
   const filteredProducts = products.filter((product: Product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  if (isLoading) return <div className="text-center mt-10">Loading...</div>;
-  if (error) return <div className="text-center mt-10">Error loading products...</div>;
+  const clearSearch = () => {
+    setSearchTerm('');
+  };
+  if (isLoading) return <div className="text-center mt-10 flex w-full">Loading...</div>;
+  if (error) return <div className="text-center mt-10 flex w-full">Error loading products...</div>;
 
   return (
-    // <div className="max-w-screen-xl mx-auto p-4">
-    //   <input
-    //     type="text"
-    //     placeholder="Search products..."
-    //     value={searchTerm}
-    //     onChange={(e) => setSearchTerm(e.target.value)}
-    //     className="border border-gray-300 p-2 rounded-md w-full mb-6"
-    //   />
-    //   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    //     {filteredProducts.map((product: Product) => (
-    //       <div key={product.id} className="bg-white shadow-md rounded-lg p-4 flex flex-col">
-    //         <img src={product.image} alt={product.title} className="h-48 w-full object-cover mb-4 rounded-md" />
-    //         <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
-    //         <p className="text-gray-700 mb-4">${product.price.toFixed(2)}</p>
-    //         <button
-    //           onClick={() => handleAddToCart(product)}
-    //           className="bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition duration-200"
-    //         >
-    //           Add to Cart
-    //         </button>
-    //       </div>
-    //     ))}
-    //     {isFetching && <div className="text-center mt-4">Loading more products...</div>}
-    //   </div>
-    // </div>
-
     <div className="max-w-screen-xl mx-auto p-4">
-      <input
+      {/* <input
         type="text"
         placeholder="Search products..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="border border-gray-300 p-3 rounded-lg w-full mb-6 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
-      />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      /> */}
+
+      {/* Search */}
+      <div className="relative w-full max-w-md">
+        <span className="absolute inset-y-0 left-3 flex items-center text-gray-600 bg-transparent ">
+          <LuSearch className='bg-transparent text-lg m-1' />
+        </span>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border border-gray-300 pl-10 pr-10 px-4 py-2 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+        />
+        {searchTerm && (
+          <button
+            onClick={clearSearch}
+            className="absolute inset-y-0 right-3 flex items-center text-gray-400"
+          >
+            <RxCross2 className='bg-transparent' />
+          </button>
+        )}
+      </div>
+
+
+      {/* Products */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-12">
         {filteredProducts.map((product: Product) => (
-          <div key={product.id} className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-            <img src={product.image} alt={product.title} className="h-48 w-full object-cover mb-4" />
-            <div className="p-4 flex flex-col">
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">{product.title}</h3>
-              <p className="text-gray-600 mb-4 font-medium">${product.price.toFixed(2)}</p>
+          <div key={product.id} title={`৳ {product.title}`} className="bg-white border-2 rounded-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-md p-4">
+            <img src={product.image} alt={product.title} className="h-48 w-full mb-4 border-2 rounded object-contain" />
+            <div className="flex flex-col gap-4">
+              <h3 className="text-base font-semibold mb-2 text-gray-800 h-8" title={`৳ {product.title}`}>
+                {product.title.length > 27 ? `৳ {product.title.slice(0, 24)}...` : product.title}
+              </h3>
+
+              <p className="text-gray-600 font-medium">৳ {product.price.toFixed(2)}</p>
               <button
                 onClick={() => handleAddToCart(product)}
-                className="bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+                className="btn flex items-center justify-center gap-1 py-2 text-sm font-medium rounded bg-gray-800 text-white  hover:bg-gray-700 transition duration-200 focus:outline-none focus:ring-0"
               >
-                Add to Cart
+              <LiaShoppingCartSolid  className='text-white bg-transparent text-xl mb-0.5'/>  Add to Cart
               </button>
             </div>
           </div>
         ))}
-        {isFetching && <div className="text-center mt-4">Loading more products...</div>}
+        {isFetching && <div className="text-center mx-auto grid place-content-center w-full">Loading more products...</div>}
       </div>
     </div>
 
