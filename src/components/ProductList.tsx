@@ -4,8 +4,8 @@ import { useGetProductsQuery } from '../services/productApi';
 import { addToCart } from '../features/cart/cartSlice';
 import { LuSearch } from 'react-icons/lu';
 import { RxCross2 } from 'react-icons/rx';
-import { PiShoppingCartBold } from 'react-icons/pi';
 import { LiaShoppingCartSolid } from 'react-icons/lia';
+import { FaSpinner } from 'react-icons/fa';
 
 // Define the product type
 interface Product {
@@ -20,7 +20,7 @@ const ProductList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { data: products = [], isLoading, error, isFetching } = useGetProductsQuery({ page, limit: 10 });
   const dispatch = useDispatch();
-
+  const [showDialog, setShowDialog] = useState(false);
   const handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
       setPage((prevPage) => prevPage + 1); // Load next page
@@ -34,6 +34,10 @@ const ProductList: React.FC = () => {
 
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart({ id: product.id, title: product.title, price: product.price, quantity: 1 }));
+    setShowDialog(true);
+    setTimeout(() => {
+      setShowDialog(false);
+    }, 2000);
   };
 
   const filteredProducts = products.filter((product: Product) =>
@@ -42,8 +46,9 @@ const ProductList: React.FC = () => {
   const clearSearch = () => {
     setSearchTerm('');
   };
-  if (isLoading) return <div className="text-center mt-10 flex w-full">Loading...</div>;
-  if (error) return <div className="text-center mt-10 flex w-full">Error loading products...</div>;
+  if (isLoading) return <div className="text-center grid place-content-center w-full h-[80vh]">  <FaSpinner className="text-xl animate-spin text-gray-600" />
+  </div>;
+  if (error) return <div className="text-center grid place-content-center w-full h-[80vh] text-red-700">Error loading products...</div>;
 
   return (
     <div className="max-w-screen-xl mx-auto p-4">
@@ -56,7 +61,7 @@ const ProductList: React.FC = () => {
       /> */}
 
       {/* Search */}
-      <div className="relative w-full max-w-md">
+      <div className="relative w-full max-w-md mt-24">
         <span className="absolute inset-y-0 left-3 flex items-center text-gray-600 bg-transparent ">
           <LuSearch className='bg-transparent text-lg m-1' />
         </span>
@@ -81,11 +86,11 @@ const ProductList: React.FC = () => {
       {/* Products */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-12">
         {filteredProducts.map((product: Product) => (
-          <div key={product.id} title={`৳ {product.title}`} className="bg-white border-2 rounded-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-md p-4">
+          <div key={product.id} title={`${product.title}`} className="bg-white border-2 rounded-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-md p-4">
             <img src={product.image} alt={product.title} className="h-48 w-full mb-4 border-2 rounded object-contain" />
             <div className="flex flex-col gap-4">
-              <h3 className="text-base font-semibold mb-2 text-gray-800 h-8" title={`৳ {product.title}`}>
-                {product.title.length > 27 ? `৳ {product.title.slice(0, 24)}...` : product.title}
+              <h3 className="text-base font-semibold mb-2 text-gray-800 h-8" title={`${product.title}`}>
+                {product.title.length > 27 ? `${product.title.slice(0, 24)}...` : product.title}
               </h3>
 
               <p className="text-gray-600 font-medium">৳ {product.price.toFixed(2)}</p>
@@ -93,13 +98,19 @@ const ProductList: React.FC = () => {
                 onClick={() => handleAddToCart(product)}
                 className="btn flex items-center justify-center gap-1 py-2 text-sm font-medium rounded bg-gray-800 text-white  hover:bg-gray-700 transition duration-200 focus:outline-none focus:ring-0"
               >
-              <LiaShoppingCartSolid  className='text-white bg-transparent text-xl mb-0.5'/>  Add to Cart
+                <LiaShoppingCartSolid className='text-white bg-transparent text-xl mb-0.5' />  Add to Cart
               </button>
             </div>
           </div>
         ))}
         {isFetching && <div className="text-center mx-auto grid place-content-center w-full">Loading more products...</div>}
       </div>
+      {showDialog && (
+  <div className="fixed bottom-4 right-4 bg-pink-100 p-4 rounded-md shadow-lg">
+    <p className="text-gray-900 font-medium text-lg bg-transparent">Item added to cart!</p>
+  </div>
+)}
+
     </div>
 
   );
