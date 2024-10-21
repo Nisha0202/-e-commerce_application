@@ -39,22 +39,24 @@ Open your browser and navigate to http://localhost:3000.
 ## Project Structure
 
 The directory structure of the application is organized as follows:
-/src\n
-  /components\n
-    - CartSummary.tsx\n
-    - ProductList.tsx
-    - SearchBar.tsx
+/src
+  /components
+    ├── CartSummary.tsx
+    ├── ProductList.tsx
+    └── SearchBar.tsx
   /features
     /cart
-      - cartSlice.ts
+      └── cartSlice.ts
   /app
-    - store.ts
+    └── store.ts
   /services
-    - productApi.ts
-  /types 
-    - types.ts 
-  - App.css
-  - App.tsx
+    └── productApi.ts
+  /types
+    └── types.ts
+  ├── App.css
+  ├── App.tsx
+  └── main.tsx
+
   - main.tsx
 
 ## Key Architectural Choices
