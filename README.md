@@ -1,50 +1,69 @@
-# React + TypeScript + Vite
+# E-Commerce Product List Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+This project is a Simple E-Commerce Product List Application built using **React**, **TypeScript**, and **RTK Query**. The application displays a list of products fetched from a mock API, supports infinite scrolling for dynamic loading of products, and allows users to search for specific items. Users can add products to their cart, with a cart summary(total items and total price) displayed at the top of the app. The cart data is persisted in the Redux state, ensuring that users retain their selections even after refreshing the page.
 
-Currently, two official plugins are available:
+## Functionalities 
+1. **Product Listing with Infinite Scroll**
+2. **Search Functionality**
+3. **Cart Management**
+4. **Responsive Design**
+ 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
+Make sure you have the following installed on your machine:
+- Node.js (version 17 or higher)
+- npm (Node Package Manager)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Installation
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Nisha0202/ecommerce-app.git
+   cd ecommerce-app
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. Install dependencies:
+bash
+Copy code
+npm install
+Running the App Locally
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Start the development server:
+bash
+Copy code
+npm start
+Open your browser and navigate to http://localhost:3000.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Project Structure
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+The directory structure of the application is organized as follows:
+  /components
+    - CartSummary.tsx
+    - ProductList.tsx
+    - SearchBar.tsx
+  /features
+    /cart
+      - cartSlice.ts
+  /app
+    - store.ts
+  /services
+    - productApi.ts
+  /types 
+    - types.ts 
+  - App.css
+  - App.tsx
+  - main.tsx
+
+## Key Architectural Choices
+
+1. **React Functional Components**: Leveraged React's functional components and hooks for state and lifecycle management.
+2. **RTK Query**: Used for efficient data fetching and caching from the FakeStore API.
+3. **Redux Toolkit**: Simplified the process of managing global state, particularly for the shopping cart.
+4. **TypeScript**: Ensured type safety across the application, reducing runtime errors and improving developer experience.
+5. **Tailwind CSS**: Utilized Tailwind CSS for styling, allowing for rapid design implementation with a utility-first approach that promotes responsive and adaptive UI.
+
+
+
+For any questions or suggestions, feel free to open an issue on the repository or contact me at [your-email@example.com].
