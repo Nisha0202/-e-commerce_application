@@ -39,8 +39,9 @@ Open your browser and navigate to http://localhost:3000.
 ## Project Structure
 
 The directory structure of the application is organized as follows:
-  /components
-    - CartSummary.tsx
+/src\n
+  /components\n
+    - CartSummary.tsx\n
     - ProductList.tsx
     - SearchBar.tsx
   /features
@@ -61,9 +62,10 @@ The directory structure of the application is organized as follows:
 1. **React Functional Components**: Leveraged React's functional components and hooks for state and lifecycle management.
 2. **RTK Query**: Used for efficient data fetching and caching from the FakeStore API.
 3. **Redux Toolkit**: Simplified the process of managing global state, particularly for the shopping cart.
-4. **TypeScript**: Ensured type safety across the application, reducing runtime errors and improving developer experience.
-5. **Tailwind CSS**: Utilized Tailwind CSS for styling, allowing for rapid design implementation with a utility-first approach that promotes responsive and adaptive UI.
+4. **Redux Persist**: Integrated redux-persist to automatically save and rehydrate the shopping cart state in localStorage, ensuring that users' cart data is preserved even after refreshing the page.
+5. **TypeScript**: Ensured type safety across the application, reducing runtime errors and improving developer experience.
+6. **Tailwind CSS**: Utilized Tailwind CSS for styling, allowing for rapid design implementation with a utility-first approach that promotes responsive and adaptive UI.
 
 
 
-For any questions or suggestions, feel free to open an issue on the repository or contact me at [your-email@example.com].
+For any questions or suggestions, feel free to open an issue on the repository or contact me at [nishajabatunnessa@gmail.com].
