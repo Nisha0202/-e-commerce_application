@@ -5,7 +5,7 @@ import { productApi } from '../src/services/productApi';
 
 const rootReducer = combineReducers({
   cart: cartReducer,
-  [productApi.reducerPath]: productApi.reducer, // Include the product API reducer
+  [productApi.reducerPath]: productApi.reducer, //the product API reducer
 });
 
 export default rootReducer;

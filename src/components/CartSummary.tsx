@@ -3,13 +3,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { FaMoneyCheckAlt} from 'react-icons/fa';
 import { LiaShoppingCartSolid } from 'react-icons/lia';
+import { CartItem } from '../types/types';
 
-interface CartItem {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-}
 
 const CartSummary: React.FC = () => {
   const items = useSelector((state: RootState) => state.cart.items) as CartItem[]; //selector
