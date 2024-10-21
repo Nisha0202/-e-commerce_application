@@ -23,14 +23,14 @@ const CartSummary: React.FC = () => {
   };
 
   return (
-    <div className='w-full max-w-[1200px] mx-auto flex items-center justify-between py-6 px-4 border-b-2 fixed top-0 left-0 right-0 z-50 bg-gray-50'>
+    <div className='w-full max-w-[1200px] mx-auto flex items-center justify-between py-6 px-4 border-b-2 fixed top-0 left-0 right-0 z-50 bg-gray-50 shadow-sm'>
       <div className='font-bold text-gray-800 hover:text-gray-700'>E-commerce</div>
       <div className="cart-summary flex items-center gap-6">
         {/* Cart Icon with Badge */}
         <div className="relative" onClick={handleCartClick}>
           <LiaShoppingCartSolid className='text-black bg-transparent text-2xl mb-0.5 cursor-pointer' />
           {totalItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-pink-400 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-pink-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
               {totalItems}
             </span>
           )}
@@ -62,7 +62,14 @@ const CartSummary: React.FC = () => {
             {/* Cart Total */}
             <div className="mt-4 border-t pt-2 flex justify-between items-center text-sm">
               <span>Total: ৳ {totalPrice.toFixed(2)}</span>
-              <button className="bg-pink-400 text-white py-1 px-2 rounded">Checkout</button>
+              <button
+                className={`${totalPrice === 0 ? 'bg-gray-500 text-gray-200' : 'bg-pink-500 text-gray-50'
+                  } py-1 px-2 rounded font-bold`}
+                disabled={totalPrice === 0}
+              >
+                Checkout
+              </button>
+          
             </div>
           </div>
         )}

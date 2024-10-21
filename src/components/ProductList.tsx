@@ -1,5 +1,5 @@
 // src/components/ProductList.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo} from 'react';
 import { useDispatch } from 'react-redux';
 import { useGetProductsQuery } from '../services/productApi';
 import { addToCart } from '../features/cart/cartSlice';
@@ -9,42 +9,45 @@ import { LiaShoppingCartSolid } from 'react-icons/lia';
 import { FaSpinner } from 'react-icons/fa';
 import { Product } from '../types/types';
 
+
 const ProductList: React.FC = () => {
   const [visibleProducts, setVisibleProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const { data: products = [], isLoading, error, isFetching } = useGetProductsQuery();
   const dispatch = useDispatch();
-  const [showDialog, setShowDialog] = useState(false)
+  const [showDialog, setShowDialog] = useState(false);
   const [itemsToShow, setItemsToShow] = useState(8); // Number of items to show at first
 
-  const filteredProducts = products.filter((product: Product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  // UseMemo to calculate filtered products only when necessary
+  const filteredProducts = useMemo(
+    () => products.filter((product: Product) =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ),
+    [products, searchTerm]
   );
 
   useEffect(() => {
     const productsToDisplay = searchTerm
-      ? filteredProducts.slice(0, itemsToShow) // Show filtered products if searching
-      : products.slice(0, itemsToShow); // Otherwise, show general products
-
+      ? filteredProducts.slice(0, itemsToShow)
+      : products.slice(0, itemsToShow);
+    
     setVisibleProducts(productsToDisplay);
-  }, [products, itemsToShow, searchTerm]);
+  }, [filteredProducts.length, itemsToShow, searchTerm]);
+  
 
-
-  // Scroll logic
+  // Scroll logic remains the same
   const handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100) {
-      // Load more filtered products if searching, otherwise load more general products
       if (itemsToShow < (searchTerm ? filteredProducts.length : products.length)) {
-        setItemsToShow((prev) => prev + 8); // Increment the number of visible items
+        setItemsToShow((prev) => prev + 8);
       }
     }
   };
 
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [itemsToShow]);
+  }, [itemsToShow, searchTerm, filteredProducts.length]);
 
 
   const handleAddToCart = (product: Product) => {
