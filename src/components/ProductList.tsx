@@ -35,7 +35,7 @@ const ProductList: React.FC = () => {
   }, [filteredProducts.length, itemsToShow, searchTerm]);
   
 
-  // Scroll logic remains the same
+  // Scroll logic
   const handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100) {
       if (itemsToShow < (searchTerm ? filteredProducts.length : products.length)) {
