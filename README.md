@@ -28,13 +28,12 @@ Make sure you have the following installed on your machine:
 2. Install dependencies:
    ```bash
    npm install
-   Running the App Locally
    ```
 
 
 3. Start the development server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 Open your browser and navigate to http://localhost:3000.
