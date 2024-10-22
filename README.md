@@ -77,4 +77,4 @@ The directory structure of the application is organized as follows:
 
 
 
-For any questions or suggestions, feel free to open an issue on the repository or contact me at [nishajabatunnessa@gmail.com].
+For any questions or suggestions, feel free to open an issue on the repository or contact me at nishajabatunnessa@gmail.com.
