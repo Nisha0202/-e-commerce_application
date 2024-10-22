@@ -23,23 +23,26 @@ Make sure you have the following installed on your machine:
    ```bash
    git clone https://github.com/Nisha0202/ecommerce-app.git
    cd ecommerce-app
-
+   ```
 
 2. Install dependencies:
   ```bash
   npm install
   Running the App Locally
+  ```
 
 
 3. Start the development server:
   ```bash
   npm start
+  ```
 
 ### Open your browser and navigate to http://localhost:3000.
 
 ## Project Structure
 
 The directory structure of the application is organized as follows:
+```
 /src
   /components
     ├── CartSummary.tsx
@@ -56,16 +59,22 @@ The directory structure of the application is organized as follows:
   ├── App.css
   ├── App.tsx
   └── main.tsx
-
+```
 
 ## Key Architectural Choices
 
-1. **React Functional Components** : Leveraged React's functional components and hooks for state and lifecycle management.
-2. **RTK Query** : Used for efficient data fetching and caching from the FakeStore API.
-3. **Redux Toolkit** : Simplified the process of managing global state, particularly for the shopping cart.
-4. **Redux Persist** : Integrated redux-persist to automatically save and rehydrate the shopping cart state in localStorage, ensuring that users' cart data is preserved even after refreshing the page.
-5. **TypeScript** : Ensured type safety across the application, reducing runtime errors and improving developer experience.
-6. **Tailwind CSS** : Utilized Tailwind CSS for styling, allowing for rapid design implementation with a utility-first approach that promotes responsive and adaptive UI.
+### React Functional Components
+Leveraged React's functional components and hooks for state and lifecycle management.
+### RTK Query
+Used for efficient data fetching and caching from the FakeStore API.
+### Redux Toolkit
+Simplified the process of managing global state, particularly for the shopping cart.
+### Redux Persist
+Integrated redux-persist to automatically save and rehydrate the shopping cart state in localStorage, ensuring that users' cart data is preserved even after refreshing the page.
+### ypeScript
+Ensured type safety across the application, reducing runtime errors and improving developer experience.
+### Tailwind CSS
+Utilized Tailwind CSS for styling, allowing for rapid design implementation with a utility-first approach that promotes responsive and adaptive UI.
 
 
 
