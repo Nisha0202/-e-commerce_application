@@ -25,16 +25,14 @@ Make sure you have the following installed on your machine:
    cd ecommerce-app
 
 2. Install dependencies:
-bash
-Copy code
-npm install
-Running the App Locally
+  ```bash
+  npm install
+  Running the App Locally
 
 2. Start the development server:
-bash
-Copy code
-npm start
-Open your browser and navigate to http://localhost:3000.
+  ```bash
+  npm start
+  Open your browser and navigate to http://localhost:3000.
 
 ## Project Structure
 
