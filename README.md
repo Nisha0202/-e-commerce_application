@@ -42,8 +42,7 @@ The directory structure of the application is organized as follows:
 /src
   /components
     ├── CartSummary.tsx
-    ├── ProductList.tsx
-    └── SearchBar.tsx
+    └── ProductList.tsx
   /features
     /cart
       └── cartSlice.ts

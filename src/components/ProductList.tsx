@@ -1,5 +1,5 @@
 // src/components/ProductList.tsx
-import React, { useEffect, useState, useMemo} from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useGetProductsQuery } from '../services/productApi';
 import { addToCart } from '../features/cart/cartSlice';
@@ -30,10 +30,10 @@ const ProductList: React.FC = () => {
     const productsToDisplay = searchTerm
       ? filteredProducts.slice(0, itemsToShow)
       : products.slice(0, itemsToShow);
-    
+
     setVisibleProducts(productsToDisplay);
   }, [filteredProducts.length, itemsToShow, searchTerm]);
-  
+
 
   // Scroll logic
   const handleScroll = () => {
@@ -58,12 +58,12 @@ const ProductList: React.FC = () => {
     }, 3000);
   };
 
-
+  // Clear Seachbar
   const clearSearch = () => {
     setSearchTerm('');
   };
-  if (isLoading) return <div className="text-center grid place-content-center w-full h-[80vh]">  <FaSpinner className="text-xl animate-spin text-gray-600" />
-  </div>;
+
+  if (isLoading) return <div className="text-center grid place-content-center w-full h-[80vh]">  <FaSpinner className="text-xl animate-spin text-gray-600" /> </div>;
   if (error) return <div className="text-center grid place-content-center w-full h-[80vh] text-red-700">Error loading products...</div>;
 
   return (
@@ -80,6 +80,7 @@ const ProductList: React.FC = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border border-gray-300 pl-10 pr-10 px-4 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+          title='Search Products Here'
         />
         {searchTerm && (
           <button
@@ -106,7 +107,7 @@ const ProductList: React.FC = () => {
               <button
                 onClick={() => handleAddToCart(product)}
                 className="btn flex items-center justify-center gap-1 py-2 text-sm font-medium rounded bg-gray-800 text-white  hover:bg-gray-700 transition duration-200 focus:outline-none focus:ring-0"
-              >
+              title='Add this Product to Cart' >
                 <LiaShoppingCartSolid className='text-white bg-transparent text-xl mb-0.5' />  Add to Cart
               </button>
             </div>
@@ -114,9 +115,10 @@ const ProductList: React.FC = () => {
         ))}
         {isFetching && <div className="text-center mx-auto grid place-content-center w-full h-12">Loading more products...</div>}
       </div>
+
       {showDialog && (
         <div className="fixed bottom-5 right-4 bg-gray-900 p-6 rounded-md shadow-lg">
-          <p className="text-gray-50 font-bold text-sm bg-transparent">Item added to cart!</p>
+          <p className="text-gray-50 font-bold text-sm bg-transparent">😀 Item Added to Cart!</p>
         </div>
       )}
 
