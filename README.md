@@ -26,16 +26,16 @@ Make sure you have the following installed on your machine:
    ```
 
 2. Install dependencies:
-  ```bash
-  npm install
-  Running the App Locally
-  ```
+   ```bash
+   npm install
+   Running the App Locally
+   ```
 
 
 3. Start the development server:
-  ```bash
-  npm start
-  ```
+   ```bash
+   npm start
+   ```
 
 ### Open your browser and navigate to http://localhost:3000.
 
@@ -44,14 +44,14 @@ Make sure you have the following installed on your machine:
 The directory structure of the application is organized as follows:
 ```
 /src
+  /app
+    └── store.ts
   /components
     ├── CartSummary.tsx
     └── ProductList.tsx
   /features
     /cart
       └── cartSlice.ts
-  /app
-    └── store.ts
   /services
     └── productApi.ts
   /types
